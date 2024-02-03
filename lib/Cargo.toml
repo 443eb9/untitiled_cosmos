@@ -1,0 +1,30 @@
+[package]
+name = "untitled_lib"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bevy = { version = "0.12.1", default-features = false, features = [
+    "dynamic_linking",
+    "bevy_asset",
+    "bevy_winit",
+    "bevy_core_pipeline",
+    "bevy_render",
+    "bevy_sprite",
+    "bevy_text",
+    "bevy_ui",
+    "multi-threaded",
+    "png",
+    "bevy_gizmos",
+    "default_font",
+    "trace_tracy",
+] }
+bevy_xpbd_2d = { version = "0.3.3", default-features = false, features = [
+    "2d",
+    "debug-plugin",
+    "parallel",
+    "f64",
+] }
+rand = "0.8.5"
+rand_distr = "0.4.3"
+rayon = "1.8.1"

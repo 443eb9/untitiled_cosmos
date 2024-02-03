@@ -1,0 +1,22 @@
+[package]
+name = "untitled_cosmos"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bevy = { version = "0.12.1", default-features = false, features = [
+    "dynamic_linking",
+    "bevy_asset",
+    "bevy_winit",
+    "bevy_core_pipeline",
+    "bevy_render",
+    "bevy_sprite",
+    "bevy_text",
+    "bevy_ui",
+    "multi-threaded",
+    "png",
+    "bevy_gizmos",
+    "default_font",
+    "trace_tracy",
+] }
+untitled_lib = { path = "../lib" }
