@@ -1,24 +1,31 @@
 use bevy::ecs::component::Component;
 
-#[derive(Component, Debug, Clone)]
+#[cfg(feature = "debug")]
+use bevy::reflect::Reflect;
+
+#[derive(Component, Clone, Copy, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "debug", derive(Reflect, Debug))]
 pub struct CelestialBodyId(pub usize);
 
-#[derive(Component, Debug, Clone)]
-pub struct CelestialBodyGalacticId {
-    pub id: usize,
-    pub galaxy_id: usize,
+#[derive(Component, Clone, Copy)]
+#[cfg_attr(feature = "debug", derive(Reflect, Debug))]
+pub struct CelestialBodySystemId {
+    pub in_system_id: usize,
+    pub system_id: usize,
 }
 
-#[derive(Component, Debug, Clone)]
+#[derive(Component, Clone)]
+#[cfg_attr(feature = "debug", derive(Reflect, Debug))]
 pub struct CelestialBodyName(pub String);
 
-#[derive(Component, Debug, Clone)]
+#[derive(Component, Clone)]
 pub struct Planet;
 
-#[derive(Component, Debug, Clone)]
+#[derive(Component, Clone)]
 pub struct Star;
 
-#[derive(Component, Debug, Clone)]
+#[derive(Component, Clone)]
+#[cfg_attr(feature = "debug", derive(Reflect, Debug))]
 pub enum StarClass {
     O,
     B,
@@ -29,5 +36,5 @@ pub enum StarClass {
     M,
 }
 
-#[derive(Component, Debug, Clone)]
+#[derive(Component, Clone)]
 pub struct Moon;

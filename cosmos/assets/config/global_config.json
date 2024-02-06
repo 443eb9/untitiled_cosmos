@@ -1,0 +1,20 @@
+{
+    "key_mapping": {
+        "camera_up": "W",
+        "camera_down": "S",
+        "camera_left": "A",
+        "camera_right": "D"
+    },
+    "camera_controller": {
+        "move_speed": 500.0,
+        "move_lerp_rate": 40.0,
+        "zoom_speed": 0.3,
+        "zoom_lerp_rate": 20.0,
+        "min_zoom": 0.01,
+        "max_zoom": 80.0
+    },
+    "mesh_config": {
+        "base_radius": 10.0,
+        "segments": 32
+    }
+}
