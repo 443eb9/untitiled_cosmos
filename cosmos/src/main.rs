@@ -3,6 +3,7 @@ use bevy::{
     window::{PresentMode, Window, WindowPlugin},
     DefaultPlugins,
 };
+use untitled_lib::CosmosPlugin;
 
 fn main() {
     App::new()
@@ -14,7 +15,7 @@ fn main() {
                 }),
                 ..Default::default()
             }),
-            untitled_lib::CosmosPlugin,
+            CosmosPlugin,
         ))
         .run();
 }

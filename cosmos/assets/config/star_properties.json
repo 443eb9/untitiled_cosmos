@@ -1,0 +1,1074 @@
+[
+    {
+        "star_class": {
+            "ty": "O",
+            "sub_ty": 3
+        },
+        "mass": 120.00,
+        "radius": 15.00,
+        "luminosity": 1400000,
+        "temperature": 44900,
+        "color": {
+            "r": 0.5764705882352941,
+            "g": 0.7137254901960784,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "O",
+            "sub_ty": 4
+        },
+        "mass": 85.31,
+        "radius": 13.43,
+        "luminosity": 1073019,
+        "temperature": 42900,
+        "color": {
+            "r": 0.5803921568627451,
+            "g": 0.7137254901960784,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "O",
+            "sub_ty": 5
+        },
+        "mass": 60.00,
+        "radius": 12.00,
+        "luminosity": 790000,
+        "temperature": 41400,
+        "color": {
+            "r": 0.5803921568627451,
+            "g": 0.7137254901960784,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "O",
+            "sub_ty": 6
+        },
+        "mass": 43.71,
+        "radius": 10.71,
+        "luminosity": 540422,
+        "temperature": 39500,
+        "color": {
+            "r": 0.5843137254901961,
+            "g": 0.7176470588235294,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "O",
+            "sub_ty": 7
+        },
+        "mass": 30.85,
+        "radius": 9.52,
+        "luminosity": 317322,
+        "temperature": 37100,
+        "color": {
+            "r": 0.5882352941176471,
+            "g": 0.7176470588235294,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "O",
+            "sub_ty": 8
+        },
+        "mass": 23.00,
+        "radius": 8.50,
+        "luminosity": 170000,
+        "temperature": 35100,
+        "color": {
+            "r": 0.5882352941176471,
+            "g": 0.7215686274509804,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "O",
+            "sub_ty": 9
+        },
+        "mass": 19.63,
+        "radius": 7.51,
+        "luminosity": 92762,
+        "temperature": 33300,
+        "color": {
+            "r": 0.592156862745098,
+            "g": 0.7215686274509804,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "B",
+            "sub_ty": 0
+        },
+        "mass": 17.70,
+        "radius": 7.16,
+        "luminosity": 44668,
+        "temperature": 31400,
+        "color": {
+            "r": 0.596078431372549,
+            "g": 0.7254901960784313,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "B",
+            "sub_ty": 1
+        },
+        "mass": 11.00,
+        "radius": 5.71,
+        "luminosity": 13490,
+        "temperature": 26000,
+        "color": {
+            "r": 0.611764705882353,
+            "g": 0.7333333333333333,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "B",
+            "sub_ty": 2
+        },
+        "mass": 7.30,
+        "radius": 4.06,
+        "luminosity": 2692,
+        "temperature": 20600,
+        "color": {
+            "r": 0.6313725490196078,
+            "g": 0.7490196078431373,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "B",
+            "sub_ty": 3
+        },
+        "mass": 5.40,
+        "radius": 3.61,
+        "luminosity": 977,
+        "temperature": 17000,
+        "color": {
+            "r": 0.6588235294117647,
+            "g": 0.7686274509803922,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "B",
+            "sub_ty": 4
+        },
+        "mass": 5.10,
+        "radius": 3.46,
+        "luminosity": 776,
+        "temperature": 16400,
+        "color": {
+            "r": 0.6627450980392157,
+            "g": 0.7725490196078432,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "B",
+            "sub_ty": 5
+        },
+        "mass": 4.70,
+        "radius": 3.36,
+        "luminosity": 589,
+        "temperature": 15700,
+        "color": {
+            "r": 0.6705882352941176,
+            "g": 0.7764705882352941,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "B",
+            "sub_ty": 6
+        },
+        "mass": 4.30,
+        "radius": 3.27,
+        "luminosity": 372,
+        "temperature": 14500,
+        "color": {
+            "r": 0.6862745098039216,
+            "g": 0.7843137254901961,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "B",
+            "sub_ty": 7
+        },
+        "mass": 3.92,
+        "radius": 2.94,
+        "luminosity": 302,
+        "temperature": 14000,
+        "color": {
+            "r": 0.6941176470588235,
+            "g": 0.788235294117647,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "B",
+            "sub_ty": 8
+        },
+        "mass": 3.38,
+        "radius": 2.86,
+        "luminosity": 155,
+        "temperature": 12300,
+        "color": {
+            "r": 0.7215686274509804,
+            "g": 0.807843137254902,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "B",
+            "sub_ty": 9
+        },
+        "mass": 2.75,
+        "radius": 2.49,
+        "luminosity": 72,
+        "temperature": 10700,
+        "color": {
+            "r": 0.7607843137254902,
+            "g": 0.8313725490196079,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "A",
+            "sub_ty": 0
+        },
+        "mass": 2.18,
+        "radius": 2.193,
+        "luminosity": 38.02,
+        "temperature": 9700,
+        "color": {
+            "r": 0.792156862745098,
+            "g": 0.8549019607843137,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "A",
+            "sub_ty": 1
+        },
+        "mass": 2.05,
+        "radius": 2.136,
+        "luminosity": 30.90,
+        "temperature": 9300,
+        "color": {
+            "r": 0.807843137254902,
+            "g": 0.8627450980392157,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "A",
+            "sub_ty": 2
+        },
+        "mass": 1.98,
+        "radius": 2.117,
+        "luminosity": 23.99,
+        "temperature": 8800,
+        "color": {
+            "r": 0.8313725490196079,
+            "g": 0.8784313725490196,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "A",
+            "sub_ty": 3
+        },
+        "mass": 1.93,
+        "radius": 1.861,
+        "luminosity": 16.98,
+        "temperature": 8600,
+        "color": {
+            "r": 0.8431372549019608,
+            "g": 0.8823529411764706,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "A",
+            "sub_ty": 4
+        },
+        "mass": 1.88,
+        "radius": 1.794,
+        "luminosity": 13.49,
+        "temperature": 8250,
+        "color": {
+            "r": 0.8627450980392157,
+            "g": 0.8941176470588236,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "A",
+            "sub_ty": 5
+        },
+        "mass": 1.86,
+        "radius": 1.785,
+        "luminosity": 12.30,
+        "temperature": 8100,
+        "color": {
+            "r": 0.8705882352941177,
+            "g": 0.9019607843137255,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "A",
+            "sub_ty": 6
+        },
+        "mass": 1.83,
+        "radius": 1.775,
+        "luminosity": 11.22,
+        "temperature": 7910,
+        "color": {
+            "r": 0.8823529411764706,
+            "g": 0.9058823529411765,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "A",
+            "sub_ty": 7
+        },
+        "mass": 1.81,
+        "radius": 1.750,
+        "luminosity": 10.00,
+        "temperature": 7760,
+        "color": {
+            "r": 0.8901960784313725,
+            "g": 0.9137254901960784,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "A",
+            "sub_ty": 8
+        },
+        "mass": 1.77,
+        "radius": 1.747,
+        "luminosity": 9.12,
+        "temperature": 7590,
+        "color": {
+            "r": 0.9019607843137255,
+            "g": 0.9215686274509803,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "A",
+            "sub_ty": 9
+        },
+        "mass": 1.75,
+        "radius": 1.747,
+        "luminosity": 8.32,
+        "temperature": 7400,
+        "color": {
+            "r": 0.9176470588235294,
+            "g": 0.9294117647058824,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "F",
+            "sub_ty": 0
+        },
+        "mass": 1.61,
+        "radius": 1.728,
+        "luminosity": 7.24,
+        "temperature": 7220,
+        "color": {
+            "r": 0.9333333333333333,
+            "g": 0.9372549019607843,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "F",
+            "sub_ty": 1
+        },
+        "mass": 1.50,
+        "radius": 1.679,
+        "luminosity": 6.17,
+        "temperature": 7020,
+        "color": {
+            "r": 0.9490196078431372,
+            "g": 0.9490196078431372,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "F",
+            "sub_ty": 2
+        },
+        "mass": 1.46,
+        "radius": 1.622,
+        "luminosity": 5.13,
+        "temperature": 6820,
+        "color": {
+            "r": 0.9686274509803922,
+            "g": 0.9568627450980393,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "F",
+            "sub_ty": 3
+        },
+        "mass": 1.44,
+        "radius": 1.578,
+        "luminosity": 4.68,
+        "temperature": 6750,
+        "color": {
+            "r": 0.9764705882352941,
+            "g": 0.9607843137254902,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "F",
+            "sub_ty": 4
+        },
+        "mass": 1.38,
+        "radius": 1.533,
+        "luminosity": 4.17,
+        "temperature": 6670,
+        "color": {
+            "r": 0.984313725490196,
+            "g": 0.9686274509803922,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "F",
+            "sub_ty": 5
+        },
+        "mass": 1.33,
+        "radius": 1.473,
+        "luminosity": 3.63,
+        "temperature": 6550,
+        "color": {
+            "r": 0.996078431372549,
+            "g": 0.9764705882352941,
+            "b": 1.0,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "F",
+            "sub_ty": 6
+        },
+        "mass": 1.25,
+        "radius": 1.359,
+        "luminosity": 2.69,
+        "temperature": 6350,
+        "color": {
+            "r": 1.0,
+            "g": 0.9686274509803922,
+            "b": 0.9803921568627451,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "F",
+            "sub_ty": 7
+        },
+        "mass": 1.21,
+        "radius": 1.324,
+        "luminosity": 2.45,
+        "temperature": 6280,
+        "color": {
+            "r": 0.9725490196078431,
+            "g": 0.9764705882352941,
+            "b": 0.9803921568627451,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "F",
+            "sub_ty": 8
+        },
+        "mass": 1.18,
+        "radius": 1.221,
+        "luminosity": 1.95,
+        "temperature": 6180,
+        "color": {
+            "r": 1.0,
+            "g": 0.9607843137254902,
+            "b": 0.9607843137254902,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "F",
+            "sub_ty": 9
+        },
+        "mass": 1.13,
+        "radius": 1.167,
+        "luminosity": 1.66,
+        "temperature": 6050,
+        "color": {
+            "r": 1.0,
+            "g": 0.9529411764705882,
+            "b": 0.9450980392156862,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "G",
+            "sub_ty": 0
+        },
+        "mass": 1.06,
+        "radius": 1.100,
+        "luminosity": 1.35,
+        "temperature": 5930,
+        "color": {
+            "r": 1.0,
+            "g": 0.9490196078431372,
+            "b": 0.9294117647058824,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "G",
+            "sub_ty": 1
+        },
+        "mass": 1.03,
+        "radius": 1.060,
+        "luminosity": 1.20,
+        "temperature": 5860,
+        "color": {
+            "r": 1.0,
+            "g": 0.9450980392156862,
+            "b": 0.9215686274509803,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "G",
+            "sub_ty": 2
+        },
+        "mass": 1.00,
+        "radius": 1.012,
+        "luminosity": 1.02,
+        "temperature": 5770,
+        "color": {
+            "r": 1.0,
+            "g": 0.9411764705882353,
+            "b": 0.9098039215686274,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "G",
+            "sub_ty": 3
+        },
+        "mass": 0.99,
+        "radius": 1.002,
+        "luminosity": 0.98,
+        "temperature": 5720,
+        "color": {
+            "r": 1.0,
+            "g": 0.9372549019607843,
+            "b": 0.9058823529411765,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "G",
+            "sub_ty": 4
+        },
+        "mass": 0.985,
+        "radius": 0.991,
+        "luminosity": 0.91,
+        "temperature": 5680,
+        "color": {
+            "r": 1.0,
+            "g": 0.9372549019607843,
+            "b": 0.8980392156862745,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "G",
+            "sub_ty": 5
+        },
+        "mass": 0.98,
+        "radius": 0.977,
+        "luminosity": 0.89,
+        "temperature": 5660,
+        "color": {
+            "r": 1.0,
+            "g": 0.9333333333333333,
+            "b": 0.8980392156862745,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "G",
+            "sub_ty": 6
+        },
+        "mass": 0.97,
+        "radius": 0.949,
+        "luminosity": 0.79,
+        "temperature": 5600,
+        "color": {
+            "r": 1.0,
+            "g": 0.9294117647058824,
+            "b": 0.8901960784313725,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "G",
+            "sub_ty": 7
+        },
+        "mass": 0.95,
+        "radius": 0.927,
+        "luminosity": 0.74,
+        "temperature": 5550,
+        "color": {
+            "r": 1.0,
+            "g": 0.9294117647058824,
+            "b": 0.8823529411764706,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "G",
+            "sub_ty": 8
+        },
+        "mass": 0.94,
+        "radius": 0.914,
+        "luminosity": 0.68,
+        "temperature": 5480,
+        "color": {
+            "r": 1.0,
+            "g": 0.9254901960784314,
+            "b": 0.8705882352941177,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "G",
+            "sub_ty": 9
+        },
+        "mass": 0.90,
+        "radius": 0.853,
+        "luminosity": 0.55,
+        "temperature": 5380,
+        "color": {
+            "r": 1.0,
+            "g": 0.9176470588235294,
+            "b": 0.8588235294117647,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "K",
+            "sub_ty": 0
+        },
+        "mass": 0.88,
+        "radius": 0.813,
+        "luminosity": 0.46,
+        "temperature": 5270,
+        "color": {
+            "r": 1.0,
+            "g": 0.9137254901960784,
+            "b": 0.8431372549019608,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "K",
+            "sub_ty": 1
+        },
+        "mass": 0.86,
+        "radius": 0.797,
+        "luminosity": 0.41,
+        "temperature": 5170,
+        "color": {
+            "r": 1.0,
+            "g": 0.9058823529411765,
+            "b": 0.8274509803921568,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "K",
+            "sub_ty": 2
+        },
+        "mass": 0.82,
+        "radius": 0.783,
+        "luminosity": 0.37,
+        "temperature": 5100,
+        "color": {
+            "r": 1.0,
+            "g": 0.9019607843137255,
+            "b": 0.8156862745098039,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "K",
+            "sub_ty": 3
+        },
+        "mass": 0.78,
+        "radius": 0.755,
+        "luminosity": 0.28,
+        "temperature": 4830,
+        "color": {
+            "r": 1.0,
+            "g": 0.8823529411764706,
+            "b": 0.7764705882352941,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "K",
+            "sub_ty": 4
+        },
+        "mass": 0.73,
+        "radius": 0.713,
+        "luminosity": 0.20,
+        "temperature": 4600,
+        "color": {
+            "r": 1.0,
+            "g": 0.8666666666666667,
+            "b": 0.7372549019607844,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "K",
+            "sub_ty": 5
+        },
+        "mass": 0.70,
+        "radius": 0.701,
+        "luminosity": 0.17,
+        "temperature": 4440,
+        "color": {
+            "r": 1.0,
+            "g": 0.8549019607843137,
+            "b": 0.7098039215686275,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "K",
+            "sub_ty": 6
+        },
+        "mass": 0.69,
+        "radius": 0.669,
+        "luminosity": 0.14,
+        "temperature": 4300,
+        "color": {
+            "r": 1.0,
+            "g": 0.8431372549019608,
+            "b": 0.6862745098039216,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "K",
+            "sub_ty": 7
+        },
+        "mass": 0.64,
+        "radius": 0.630,
+        "luminosity": 0.10,
+        "temperature": 4100,
+        "color": {
+            "r": 1.0,
+            "g": 0.8235294117647058,
+            "b": 0.6470588235294118,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "K",
+            "sub_ty": 8
+        },
+        "mass": 0.62,
+        "radius": 0.615,
+        "luminosity": 0.087,
+        "temperature": 3990,
+        "color": {
+            "r": 1.0,
+            "g": 0.8156862745098039,
+            "b": 0.6274509803921569,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "K",
+            "sub_ty": 9
+        },
+        "mass": 0.59,
+        "radius": 0.608,
+        "luminosity": 0.079,
+        "temperature": 3930,
+        "color": {
+            "r": 1.0,
+            "g": 0.807843137254902,
+            "b": 0.615686274509804,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "M",
+            "sub_ty": 0
+        },
+        "mass": 0.57,
+        "radius": 0.588,
+        "luminosity": 0.069,
+        "temperature": 3850,
+        "color": {
+            "r": 1.0,
+            "g": 0.8,
+            "b": 0.6,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "M",
+            "sub_ty": 1
+        },
+        "mass": 0.50,
+        "radius": 0.501,
+        "luminosity": 0.041,
+        "temperature": 3660,
+        "color": {
+            "r": 1.0,
+            "g": 0.7803921568627451,
+            "b": 0.5607843137254902,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "M",
+            "sub_ty": 2
+        },
+        "mass": 0.44,
+        "radius": 0.446,
+        "luminosity": 0.029,
+        "temperature": 3560,
+        "color": {
+            "r": 1.0,
+            "g": 0.7725490196078432,
+            "b": 0.5411764705882353,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "M",
+            "sub_ty": 3
+        },
+        "mass": 0.37,
+        "radius": 0.361,
+        "luminosity": 0.016,
+        "temperature": 3430,
+        "color": {
+            "r": 1.0,
+            "g": 0.7568627450980392,
+            "b": 0.5098039215686274,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "M",
+            "sub_ty": 4
+        },
+        "mass": 0.23,
+        "radius": 0.274,
+        "luminosity": 7.2e-3,
+        "temperature": 3210,
+        "color": {
+            "r": 1.0,
+            "g": 0.7294117647058823,
+            "b": 0.4627450980392157,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "M",
+            "sub_ty": 5
+        },
+        "mass": 0.162,
+        "radius": 0.196,
+        "luminosity": 3.0e-3,
+        "temperature": 3060,
+        "color": {
+            "r": 1.0,
+            "g": 0.7098039215686275,
+            "b": 0.4235294117647059,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "M",
+            "sub_ty": 6
+        },
+        "mass": 0.102,
+        "radius": 0.137,
+        "luminosity": 1.0e-3,
+        "temperature": 2810,
+        "color": {
+            "r": 1.0,
+            "g": 0.6745098039215687,
+            "b": 0.3607843137254902,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "M",
+            "sub_ty": 7
+        },
+        "mass": 0.090,
+        "radius": 0.120,
+        "luminosity": 6.5e-4,
+        "temperature": 2680,
+        "color": {
+            "r": 1.0,
+            "g": 0.6549019607843137,
+            "b": 0.3254901960784314,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "M",
+            "sub_ty": 8
+        },
+        "mass": 0.085,
+        "radius": 0.114,
+        "luminosity": 5.2e-4,
+        "temperature": 2570,
+        "color": {
+            "r": 1.0,
+            "g": 0.6392156862745098,
+            "b": 0.29411764705882354,
+            "a": 1
+        }
+    },
+    {
+        "star_class": {
+            "ty": "M",
+            "sub_ty": 9
+        },
+        "mass": 0.079,
+        "radius": 0.102,
+        "luminosity": 3.0e-4,
+        "temperature": 2380,
+        "color": {
+            "r": 1.0,
+            "g": 0.6078431372549019,
+            "b": 0.23529411764705882,
+            "a": 1
+        }
+    }
+]

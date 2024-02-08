@@ -5,6 +5,7 @@ pub mod consts;
 pub mod core;
 #[cfg(feature = "debug")]
 pub mod debug;
+pub mod floating_origin;
 pub mod gen;
 pub mod input;
 pub mod math;

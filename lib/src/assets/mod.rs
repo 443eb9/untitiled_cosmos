@@ -17,17 +17,23 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    consts::path,
+    consts,
     input::{camera::CameraController, KeyMapping},
     sim::components::CelestialBodyId,
     utils,
 };
+
+use self::settings::{StarProperties, UnitsInfo};
+
+pub mod settings;
 
 pub struct CosmosAssetsPlugin;
 
 impl Plugin for CosmosAssetsPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<GlobalConfig>()
+            .init_resource::<StarProperties>()
+            .init_resource::<UnitsInfo>()
             .init_resource::<MeshAssets>()
             .init_resource::<MaterialAssets>()
             .init_resource::<FontAssets>();
@@ -108,12 +114,14 @@ impl MeshAssets {
         &mut self,
         assets: &mut Assets<Mesh>,
         id: CelestialBodyId,
-        radius: f64,
+        mut radius_px: f64,
     ) -> Handle<Mesh> {
+        radius_px *= 100.;
         let handle = assets.add(
             Circle {
-                radius: radius as f32,
-                vertices: self.config.segments * (radius / self.config.base_radius).ceil() as usize,
+                radius: radius_px as f32,
+                vertices: self.config.segments
+                    * (radius_px / self.config.base_radius).ceil() as usize,
             }
             .into(),
         );
@@ -134,18 +142,19 @@ impl MaterialAssets {
         assets: &mut Assets<ColorMaterial>,
         id: CelestialBodyId,
         rng: &mut impl Rng,
-    ) -> Handle<ColorMaterial> {
+    ) -> (Handle<ColorMaterial>, Color) {
+        let color = Color::Rgba {
+            red: rng.gen_range(0f32..1.),
+            green: rng.gen_range(0f32..1.),
+            blue: rng.gen_range(0f32..1.),
+            alpha: 1.,
+        };
         let handle = assets.add(ColorMaterial {
-            color: Color::Rgba {
-                red: rng.gen_range(0f32..1.),
-                green: rng.gen_range(0f32..1.),
-                blue: rng.gen_range(0f32..1.),
-                alpha: 1.,
-            },
+            color,
             ..Default::default()
         });
         self.insert(id, handle.clone());
-        handle
+        (handle, color)
     }
 }
 
@@ -158,6 +167,6 @@ pub struct GlobalConfig {
 
 impl Default for GlobalConfig {
     fn default() -> Self {
-        utils::deser(path::GLOBAL_CONFIG).unwrap()
+        utils::deser(consts::GLOBAL_CONFIG).unwrap()
     }
 }

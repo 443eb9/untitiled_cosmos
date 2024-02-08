@@ -14,8 +14,11 @@ use serde::{Deserialize, Serialize};
 
 use super::KeyMapping;
 
+#[cfg(feature = "debug")]
+use bevy::{ecs::reflect::ReflectResource, reflect::Reflect};
+
 #[derive(Component, Clone, Serialize, Deserialize)]
-#[cfg_attr(feature = "debug", derive(bevy::reflect::Reflect))]
+#[cfg_attr(feature = "debug", derive(Reflect))]
 pub struct CameraController {
     pub move_speed: f32,
     pub move_lerp_rate: f32,
@@ -26,6 +29,8 @@ pub struct CameraController {
 }
 
 #[derive(Resource)]
+#[cfg_attr(feature = "debug", derive(Reflect))]
+#[cfg_attr(feature = "debug", reflect(Resource))]
 pub struct CameraTarget {
     pub position: Vec3,
     pub zoom: f32,

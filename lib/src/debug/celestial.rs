@@ -12,11 +12,17 @@ use bevy::{
 };
 
 use crate::{
-    assets::{MaterialAssets, MeshAssets},
+    assets::{
+        settings::{StarProperties, UnitsInfo},
+        MaterialAssets, MeshAssets,
+    },
+    consts,
+    gen::{GalaxyGenerator, GalaxyGeneratorConfig},
+    math::aabbs::Aabb2d,
     sim::{
-        bundles::StarBundle,
-        components::{CelestialBodyName, StarClass},
-        resources::{CelestialBody, Galaxy, StarSystem},
+        bundles::{CelestialBodyBundle, StarBundle},
+        components::{CelestialBodyName, SpectralType, StarClass},
+        resources::{CelestialBody, Galaxy},
     },
 };
 
@@ -44,24 +50,79 @@ pub fn spawn_body(
     mut mesh_assets: ResMut<Assets<Mesh>>,
     mut material_assets: ResMut<Assets<ColorMaterial>>,
 ) {
-    if input.just_pressed(KeyCode::Space) {
-        if galaxy.system_count() == 0 {
-            galaxy.add_system(StarSystem::new(0, DVec2::ZERO, 100.));
-        }
-
+    if input.just_pressed(KeyCode::F1) {
         let (id, sys_id) = galaxy.add_body(0, body_gen.body.clone());
+        let (material, color) =
+            materials.generate(&mut material_assets, id, &mut rand::thread_rng());
+        galaxy.set_color(id, color);
         commands.spawn((
             StarBundle {
                 id,
                 system_id: sys_id,
                 name: CelestialBodyName("".to_string()),
-                star_class: StarClass::O,
+                class: StarClass {
+                    ty: SpectralType::O,
+                    sub_ty: 0,
+                },
             },
             MaterialMesh2dBundle {
                 mesh: Mesh2dHandle(meshes.generate(&mut mesh_assets, id, body_gen.body.radius())),
-                material: materials.generate(&mut material_assets, id, &mut rand::thread_rng()),
+                material,
                 ..Default::default()
             },
         ));
+    }
+}
+
+pub fn generate_galaxy(
+    mut commands: Commands,
+    units: Res<UnitsInfo>,
+    properties: Res<StarProperties>,
+    mut mesh_assets: ResMut<MeshAssets>,
+    mut material_assets: ResMut<MaterialAssets>,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<ColorMaterial>>,
+) {
+    let config = GalaxyGeneratorConfig::new_debug();
+    let mut generator = GalaxyGenerator::new(
+        config,
+        &properties,
+        &units,
+        &mut mesh_assets,
+        &mut material_assets,
+        &mut meshes,
+        &mut materials,
+    );
+    generator.generate();
+    let mut galaxy = Galaxy::default();
+    let mut bundles = Vec::new();
+    generator.transfer_result(&mut galaxy, &mut bundles);
+    commands.insert_resource(galaxy);
+    bundles.into_iter().for_each(|(cb, mb)| {
+        let mut commands = match cb {
+            CelestialBodyBundle::Star(b) => commands.spawn(b),
+            CelestialBodyBundle::Planet(b) => commands.spawn(b),
+        };
+        commands.insert(mb);
+    });
+}
+
+#[cfg(test)]
+mod test {
+    use rand_distr::Distribution;
+
+    use crate::gen::distr::StarMassDistribution;
+
+    use super::*;
+
+    #[test]
+    fn test_mass_distr() {
+        let mut records = vec![0; 120];
+        for _ in 0..64 {
+            let mut rng = rand::thread_rng();
+            let mass = StarMassDistribution.sample(&mut rng);
+            records[mass as usize] += 1;
+        }
+        println!("{:?}", records);
     }
 }

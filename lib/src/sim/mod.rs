@@ -1,6 +1,6 @@
-use bevy::app::{App, FixedUpdate, Plugin};
+use bevy::app::{App, FixedUpdate, Plugin, Update};
 
-use self::resources::{Galaxy, TimeScale};
+use self::resources::{OrbitPredictor, SimulationTimeScale};
 
 pub mod bundles;
 pub mod components;
@@ -16,18 +16,26 @@ impl Plugin for CosmosSimPlugin {
             (systems::universal_gravitation, systems::transform_syncer),
         );
 
-        app.init_resource::<TimeScale>().init_resource::<Galaxy>();
+        app.add_systems(Update, systems::orbit_drawer);
+
+        app.init_resource::<OrbitPredictor>()
+            .init_resource::<SimulationTimeScale>();
 
         #[cfg(feature = "debug")]
         {
-            app.register_type::<components::CelestialBodyId>()
-                .register_type::<components::CelestialBodySystemId>()
-                .register_type::<components::CelestialBodyName>()
-                .register_type::<components::StarClass>();
+            use components::*;
+            use resources::*;
+
+            app.register_type::<CelestialBodyId>()
+                .register_type::<CelestialBodySystemId>()
+                .register_type::<CelestialBodyName>()
+                .register_type::<SpectralType>();
 
             app.register_type::<Galaxy>()
-                .register_type::<resources::StarSystem>()
-                .register_type::<resources::CelestialBody>();
+                .register_type::<OrbitPredictor>()
+                .register_type::<StarSystem>()
+                .register_type::<CelestialBody>()
+                .register_type::<SimulationTimeScale>();
         }
     }
 }

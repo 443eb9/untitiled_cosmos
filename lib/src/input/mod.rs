@@ -24,7 +24,10 @@ impl Plugin for CosmosInputPlugin {
 
         #[cfg(feature = "debug")]
         {
-            app.register_type::<camera::CameraController>();
+            use camera::*;
+
+            app.register_type::<CameraController>()
+                .register_type::<CameraTarget>();
         }
     }
 }

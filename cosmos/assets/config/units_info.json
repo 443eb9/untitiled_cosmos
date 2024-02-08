@@ -1,0 +1,18 @@
+{
+    "MassAstro": {
+        "name": "Sun mass",
+        "symbol": "M☉"
+    },
+    "RadiusAstro": {
+        "name": "Sun radius",
+        "symbol": "R☉"
+    },
+    "LuminosityAstro": {
+        "name": "Sun luminosity",
+        "symbol": "L☉"
+    },
+    "TemperatureAstro": {
+        "name": "K",
+        "symbol": "K"
+    }
+}

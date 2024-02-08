@@ -17,6 +17,5 @@ bevy = { version = "0.12.1", default-features = false, features = [
     "png",
     "bevy_gizmos",
     "default_font",
-    "trace_tracy",
 ] }
 untitled_lib = { path = "../lib" }

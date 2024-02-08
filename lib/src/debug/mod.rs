@@ -3,15 +3,19 @@ use bevy::{
     diagnostic::{DiagnosticsStore, FrameTimeDiagnosticsPlugin},
     ecs::{
         component::Component,
-        system::{Commands, Query, Res},
+        system::{Commands, Query, Res, ResMut},
     },
     hierarchy::BuildChildren,
+    input::{keyboard::KeyCode, Input},
     text::{Text, TextStyle},
     ui::node_bundles::{NodeBundle, TextBundle},
 };
 use bevy_inspector_egui::quick::WorldInspectorPlugin;
 
-use crate::assets::FontAssets;
+use crate::{
+    assets::FontAssets,
+    sim::resources::{Galaxy, OrbitPredictor},
+};
 
 use self::celestial::BodyGenerator;
 
@@ -29,7 +33,7 @@ impl Plugin for CosmosDebugPlugin {
             app.add_plugins(WorldInspectorPlugin::default());
         }
 
-        app.add_systems(Startup, setup_ui)
+        app.add_systems(Startup, (setup_ui, celestial::generate_galaxy))
             .add_systems(Update, update_ui);
 
         if self.body_spawn {
@@ -39,6 +43,19 @@ impl Plugin for CosmosDebugPlugin {
         app.init_resource::<BodyGenerator>();
 
         app.register_type::<BodyGenerator>();
+
+        app.add_systems(Update, debug_system);
+    }
+}
+
+fn debug_system(
+    galaxy: Res<Galaxy>,
+    mut predictor: ResMut<OrbitPredictor>,
+    input: Res<Input<KeyCode>>,
+) {
+    if input.just_pressed(KeyCode::F2) {
+        let i = predictor.iterations();
+        predictor.update_state(i, &galaxy);
     }
 }
 
