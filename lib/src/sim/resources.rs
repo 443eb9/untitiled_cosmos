@@ -23,7 +23,7 @@ impl Default for SimulationTimeScale {
     }
 }
 
-#[derive(Clone, Copy)]
+#[derive(Default, Clone, Copy)]
 #[cfg_attr(feature = "debug", derive(Debug, Reflect))]
 pub struct CelestialBody {
     pos: DVec2,
@@ -194,6 +194,11 @@ impl Galaxy {
     #[inline]
     pub fn get_body(&self, id: CelestialBodyId) -> Option<&CelestialBody> {
         self.bodies.get(id.0)
+    }
+
+    #[inline]
+    pub fn get_system(&self, id: usize) -> Option<&StarSystem> {
+        self.star_systems.get(id)
     }
 
     #[inline]

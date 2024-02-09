@@ -26,7 +26,7 @@ pub(super) fn transform_syncer(
 ) {
     bodies_query.par_iter_mut().for_each(|(id, mut transform)| {
         if let Some(body) = galaxy.get_body(*id) {
-            transform.translation = (body.pos().as_vec2() * 100.).extend(0.);
+            transform.translation = body.pos().as_vec2().extend(0.);
         }
     });
 }
@@ -38,11 +38,7 @@ pub(super) fn orbit_drawer(predictor: Res<OrbitPredictor>, mut gizmos: Gizmos) {
             return;
         }
         for i in 0..orbit.vertices().len() - 1 {
-            gizmos.line_2d(
-                verts[i].as_vec2() * 100.,
-                verts[i + 1].as_vec2() * 100.,
-                orbit.color,
-            );
+            gizmos.line_2d(verts[i].as_vec2(), verts[i + 1].as_vec2(), orbit.color);
         }
     });
 }

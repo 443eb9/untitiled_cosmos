@@ -29,7 +29,8 @@ impl Plugin for CosmosSimPlugin {
             app.register_type::<CelestialBodyId>()
                 .register_type::<CelestialBodySystemId>()
                 .register_type::<CelestialBodyName>()
-                .register_type::<SpectralType>();
+                .register_type::<SpectralType>()
+                .register_type::<StarClass>();
 
             app.register_type::<Galaxy>()
                 .register_type::<OrbitPredictor>()

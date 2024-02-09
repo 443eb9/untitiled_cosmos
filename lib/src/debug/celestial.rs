@@ -51,14 +51,14 @@ pub fn spawn_body(
     mut material_assets: ResMut<Assets<ColorMaterial>>,
 ) {
     if input.just_pressed(KeyCode::F1) {
-        let (id, sys_id) = galaxy.add_body(0, body_gen.body.clone());
+        let (id, systemic_id) = galaxy.add_body(0, body_gen.body.clone());
         let (material, color) =
             materials.generate(&mut material_assets, id, &mut rand::thread_rng());
         galaxy.set_color(id, color);
         commands.spawn((
             StarBundle {
                 id,
-                system_id: sys_id,
+                systemic_id,
                 name: CelestialBodyName("".to_string()),
                 class: StarClass {
                     ty: SpectralType::O,

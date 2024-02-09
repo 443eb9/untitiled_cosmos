@@ -114,9 +114,8 @@ impl MeshAssets {
         &mut self,
         assets: &mut Assets<Mesh>,
         id: CelestialBodyId,
-        mut radius_px: f64,
+        radius_px: f64,
     ) -> Handle<Mesh> {
-        radius_px *= 100.;
         let handle = assets.add(
             Circle {
                 radius: radius_px as f32,

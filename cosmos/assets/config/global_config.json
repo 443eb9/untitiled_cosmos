@@ -11,7 +11,7 @@
         "zoom_speed": 0.3,
         "zoom_lerp_rate": 20.0,
         "min_zoom": 0.01,
-        "max_zoom": 1000.0
+        "max_zoom": 10000.0
     },
     "mesh_config": {
         "base_radius": 1000.0,

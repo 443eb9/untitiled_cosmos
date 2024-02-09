@@ -40,7 +40,7 @@ impl Default for CameraTarget {
     fn default() -> Self {
         Self {
             position: Vec3::ZERO,
-            zoom: 1.,
+            zoom: 300.,
         }
     }
 }

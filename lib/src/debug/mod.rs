@@ -23,7 +23,8 @@ mod celestial;
 
 pub struct CosmosDebugPlugin {
     pub inspector: bool,
-    pub body_spawn: bool,
+    pub body_spawner: bool,
+    pub auto_generate: bool,
 }
 
 impl Plugin for CosmosDebugPlugin {
@@ -33,10 +34,16 @@ impl Plugin for CosmosDebugPlugin {
             app.add_plugins(WorldInspectorPlugin::default());
         }
 
-        app.add_systems(Startup, (setup_ui, celestial::generate_galaxy))
+        app.add_systems(Startup, setup_ui)
             .add_systems(Update, update_ui);
 
-        if self.body_spawn {
+        if self.auto_generate {
+            app.add_systems(Startup, celestial::generate_galaxy);
+        } else {
+            app.init_resource::<Galaxy>();
+        }
+
+        if self.body_spawner {
             app.add_systems(Update, celestial::spawn_body);
         }
 

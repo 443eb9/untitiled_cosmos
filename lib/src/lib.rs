@@ -25,7 +25,8 @@ impl Plugin for CosmosPlugin {
             #[cfg(feature = "debug")]
             debug::CosmosDebugPlugin {
                 inspector: true,
-                body_spawn: true,
+                body_spawner: true,
+                auto_generate: true,
             },
         ));
     }

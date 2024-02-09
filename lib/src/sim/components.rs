@@ -28,6 +28,7 @@ pub struct Planet;
 pub struct Star;
 
 #[derive(Component, Clone, Copy, PartialEq, Eq, Hash, Deserialize)]
+#[cfg_attr(feature = "debug", derive(Reflect, Debug))]
 pub struct StarClass {
     pub ty: SpectralType,
     pub sub_ty: u8,
@@ -55,7 +56,7 @@ impl StarClass {
     pub fn to_index(self) -> usize {
         (self.ty as usize)
             .checked_sub(1)
-            .unwrap_or(self.sub_ty as usize - 3)
+            .unwrap_or(self.sub_ty as usize + 10 - 3 % 10)
             * 10
             + self.sub_ty as usize
             + 7
