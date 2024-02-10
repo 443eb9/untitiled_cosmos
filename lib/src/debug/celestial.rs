@@ -12,13 +12,8 @@ use bevy::{
 };
 
 use crate::{
-    assets::{
-        settings::{StarProperties, UnitsInfo},
-        MaterialAssets, MeshAssets,
-    },
-    consts,
+    assets::{settings::StarProperties, MaterialAssets, MeshAssets},
     gen::{GalaxyGenerator, GalaxyGeneratorConfig},
-    math::aabbs::Aabb2d,
     sim::{
         bundles::{CelestialBodyBundle, StarBundle},
         components::{CelestialBodyName, SpectralType, StarClass},
@@ -76,7 +71,6 @@ pub fn spawn_body(
 
 pub fn generate_galaxy(
     mut commands: Commands,
-    units: Res<UnitsInfo>,
     properties: Res<StarProperties>,
     mut mesh_assets: ResMut<MeshAssets>,
     mut material_assets: ResMut<MaterialAssets>,
@@ -87,7 +81,6 @@ pub fn generate_galaxy(
     let mut generator = GalaxyGenerator::new(
         config,
         &properties,
-        &units,
         &mut mesh_assets,
         &mut material_assets,
         &mut meshes,
@@ -102,6 +95,7 @@ pub fn generate_galaxy(
         let mut commands = match cb {
             CelestialBodyBundle::Star(b) => commands.spawn(b),
             CelestialBodyBundle::Planet(b) => commands.spawn(b),
+            CelestialBodyBundle::Moon(b) => commands.spawn(b),
         };
         commands.insert(mb);
     });
@@ -112,8 +106,6 @@ mod test {
     use rand_distr::Distribution;
 
     use crate::gen::distr::StarMassDistribution;
-
-    use super::*;
 
     #[test]
     fn test_mass_distr() {

@@ -24,6 +24,13 @@ pub struct CelestialBodyName(pub String);
 #[derive(Component, Clone)]
 pub struct Planet;
 
+#[derive(Component, Clone, Copy, PartialEq, Eq, Hash)]
+pub enum PlanetType {
+    GasGiant,
+    IceGiant,
+    Rocky,   
+}
+
 #[derive(Component, Clone)]
 pub struct Star;
 

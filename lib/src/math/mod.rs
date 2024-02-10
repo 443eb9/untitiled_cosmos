@@ -3,6 +3,7 @@ use std::f64::consts::PI;
 use serde_derive::Deserialize;
 
 pub mod aabbs;
+pub mod physics;
 
 #[derive(Clone, Copy, PartialEq, Eq, Hash, Deserialize)]
 pub enum UnitClass {

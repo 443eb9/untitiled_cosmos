@@ -1,7 +1,7 @@
 use crate::{consts, sim::resources::CelestialBody};
 
 #[inline]
-pub fn min_spd_to_dist(v: f64, center_mass: f64) -> f64 {
+pub fn linear_spd_to_dist(v: f64, center_mass: f64) -> f64 {
     (consts::G * center_mass / v / v).sqrt()
 }
 
@@ -16,16 +16,16 @@ pub fn force_between(lhs: &CelestialBody, rhs: &CelestialBody) -> f64 {
 }
 
 #[inline]
-pub fn mass_radius_to_force(mass1: f64, mass2: f64, radius: f64) -> f64 {
-    consts::G * mass1 * mass2 / radius / radius
+pub fn mass_dist_to_force(m1: f64, m2: f64, d: f64) -> f64 {
+    consts::G * m1 * m2 / d / d
 }
 
 #[inline]
-pub fn mass_radius_to_acc(mass: f64, radius: f64) -> f64 {
-    consts::G * mass / radius / radius
+pub fn mass_dist_to_acc(m: f64, d: f64) -> f64 {
+    consts::G * m / d / d
 }
 
 #[inline]
-pub fn mass_acc_to_radius(mass: f64, acc: f64) -> f64 {
-    (consts::G * mass / acc).sqrt()
+pub fn mass_acc_to_dist(m: f64, a: f64) -> f64 {
+    (consts::G * m / a).sqrt()
 }
