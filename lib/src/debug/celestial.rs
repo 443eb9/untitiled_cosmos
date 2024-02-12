@@ -4,20 +4,20 @@ use bevy::{
         reflect::ReflectResource,
         system::{Commands, Res, ResMut, Resource},
     },
-    input::{keyboard::KeyCode, Input},
     math::DVec2,
     reflect::Reflect,
     render::mesh::Mesh,
-    sprite::{ColorMaterial, MaterialMesh2dBundle, Mesh2dHandle},
+    sprite::ColorMaterial,
 };
 
 use crate::{
-    assets::{settings::StarProperties, MaterialAssets, MeshAssets},
+    assets::{
+        settings::{ConstellationNames, StarProperties},
+        MaterialAssets, MeshAssets, SubstanceAssets,
+    },
     gen::{GalaxyGenerator, GalaxyGeneratorConfig},
     sim::{
-        bundles::{CelestialBodyBundle, StarBundle},
-        components::{CelestialBodyName, SpectralType, StarClass},
-        resources::{CelestialBody, Galaxy},
+        bundles::CelestialBodyBundle, components::CelestialBodyId, resources::{CelestialBody, Galaxy}
     },
 };
 
@@ -35,43 +35,11 @@ impl Default for BodyGenerator {
     }
 }
 
-pub fn spawn_body(
-    mut commands: Commands,
-    input: Res<Input<KeyCode>>,
-    body_gen: Res<BodyGenerator>,
-    mut galaxy: ResMut<Galaxy>,
-    mut meshes: ResMut<MeshAssets>,
-    mut materials: ResMut<MaterialAssets>,
-    mut mesh_assets: ResMut<Assets<Mesh>>,
-    mut material_assets: ResMut<Assets<ColorMaterial>>,
-) {
-    if input.just_pressed(KeyCode::F1) {
-        let (id, systemic_id) = galaxy.add_body(0, body_gen.body.clone());
-        let (material, color) =
-            materials.generate(&mut material_assets, id, &mut rand::thread_rng());
-        galaxy.set_color(id, color);
-        commands.spawn((
-            StarBundle {
-                id,
-                systemic_id,
-                name: CelestialBodyName("".to_string()),
-                class: StarClass {
-                    ty: SpectralType::O,
-                    sub_ty: 0,
-                },
-            },
-            MaterialMesh2dBundle {
-                mesh: Mesh2dHandle(meshes.generate(&mut mesh_assets, id, body_gen.body.radius())),
-                material,
-                ..Default::default()
-            },
-        ));
-    }
-}
-
 pub fn generate_galaxy(
     mut commands: Commands,
     properties: Res<StarProperties>,
+    constellation_names: Res<ConstellationNames>,
+    substance_assets: Res<SubstanceAssets>,
     mut mesh_assets: ResMut<MeshAssets>,
     mut material_assets: ResMut<MaterialAssets>,
     mut meshes: ResMut<Assets<Mesh>>,
@@ -80,7 +48,9 @@ pub fn generate_galaxy(
     let config = GalaxyGeneratorConfig::new_debug();
     let mut generator = GalaxyGenerator::new(
         config,
+        &constellation_names,
         &properties,
+        &substance_assets,
         &mut mesh_assets,
         &mut material_assets,
         &mut meshes,
@@ -94,12 +64,40 @@ pub fn generate_galaxy(
     bundles.into_iter().for_each(|(cb, mb)| {
         let mut commands = match cb {
             CelestialBodyBundle::Star(b) => commands.spawn(b),
-            CelestialBodyBundle::Planet(b) => commands.spawn(b),
-            CelestialBodyBundle::Moon(b) => commands.spawn(b),
+            CelestialBodyBundle::Planet {
+                planet,
+                crust,
+                atmo,
+            } => {
+                let mut entity = commands.spawn(planet.clone());
+                if let Some(crust) = crust {
+                    entity.insert(crust);
+                }
+                if let Some(atmo) = atmo {
+                    entity.insert(atmo);
+                }
+                entity
+            }
+            CelestialBodyBundle::Moon { moon, crust, atmo } => {
+                let mut entity = commands.spawn((moon, crust));
+                if let Some(atmo) = atmo {
+                    entity.insert(atmo);
+                }
+                entity
+            }
         };
         commands.insert(mb);
     });
 }
+
+// pub fn body_removal_test(mut galaxy: ResMut<Galaxy>) {
+//     galaxy.remove_body(CelestialBodyId(2));
+//     println!("removed 2");
+//     galaxy.remove_body(CelestialBodyId(4));
+//     println!("removed 4");
+//     galaxy.remove_body(CelestialBodyId(0));
+//     println!("removed 0");
+// }
 
 #[cfg(test)]
 mod test {

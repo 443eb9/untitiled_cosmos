@@ -27,14 +27,21 @@ impl Plugin for CosmosSimPlugin {
             use resources::*;
 
             app.register_type::<CelestialBodyId>()
-                .register_type::<CelestialBodySystemId>()
                 .register_type::<CelestialBodyName>()
-                .register_type::<SpectralType>()
-                .register_type::<StarClass>();
+                .register_type::<CelestialBodyColor>()
+                .register_type::<CelestialBodyCrust>()
+                .register_type::<CelestialBodySubstanceProps>()
+                .register_type::<CelestialBodyAtmosphere>();
+
+            app.register_type::<SpectralType>()
+                .register_type::<StarClass>()
+                .register_type::<CelestialBodyEffectiveTemp>()
+                .register_type::<StarLuminosity>();
+
+            app.register_type::<PlanetType>();
 
             app.register_type::<Galaxy>()
                 .register_type::<OrbitPredictor>()
-                .register_type::<StarSystem>()
                 .register_type::<CelestialBody>()
                 .register_type::<SimulationTimeScale>();
         }

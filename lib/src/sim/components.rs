@@ -1,6 +1,7 @@
 use std::cmp::Ordering;
 
-use bevy::ecs::component::Component;
+use crate::sci::chemistry::{Substance, SubstanceContent, SubstanceProperty};
+use bevy::{ecs::component::Component, render::color::Color};
 
 #[cfg(feature = "debug")]
 use bevy::reflect::Reflect;
@@ -10,25 +11,45 @@ use serde_derive::Deserialize;
 #[cfg_attr(feature = "debug", derive(Reflect, Debug))]
 pub struct CelestialBodyId(pub usize);
 
-#[derive(Component, Clone, Copy, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = "debug", derive(Reflect, Debug))]
-pub struct CelestialBodySystemId {
-    pub in_system_id: usize,
-    pub system_id: usize,
-}
-
 #[derive(Component, Clone)]
 #[cfg_attr(feature = "debug", derive(Reflect, Debug))]
 pub struct CelestialBodyName(pub String);
 
-#[derive(Component, Clone)]
-pub struct Planet;
+#[derive(Component, Clone, Copy)]
+#[cfg_attr(feature = "debug", derive(Reflect, Debug))]
+pub struct CelestialBodyColor(pub Color);
 
-#[derive(Component, Clone, Copy, PartialEq, Eq, Hash)]
-pub enum PlanetType {
-    GasGiant,
-    IceGiant,
-    Rocky,   
+#[derive(Component, Clone)]
+#[cfg_attr(feature = "debug", derive(Reflect, Debug))]
+pub struct CelestialBodyCrust {
+    pub content: SubstanceContent,
+    pub density: f64,
+}
+
+#[derive(Component, Clone)]
+#[cfg_attr(feature = "debug", derive(Reflect, Debug))]
+pub struct CelestialBodyAtmosphere {
+    pub content: SubstanceContent,
+    pub density: f64,
+}
+
+#[derive(Component, Clone, Copy, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "debug", derive(Reflect, Debug))]
+pub struct CelestialBodyEffectiveTemp(pub f64);
+
+#[derive(Component, Clone)]
+#[cfg_attr(feature = "debug", derive(Reflect, Debug))]
+pub struct CelestialBodySubstanceProps(Vec<SubstanceProperty>);
+
+impl CelestialBodySubstanceProps {
+    pub fn new(props: Vec<SubstanceProperty>) -> Self {
+        Self(props)
+    }
+
+    #[inline]
+    pub fn get(&self, substance: Substance) -> Option<&SubstanceProperty> {
+        self.0.get(substance as usize)
+    }
 }
 
 #[derive(Component, Clone)]
@@ -80,6 +101,21 @@ pub enum SpectralType {
     G,
     K,
     M,
+}
+
+#[derive(Component, Clone, Copy, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "debug", derive(Reflect, Debug))]
+pub struct StarLuminosity(pub f64);
+
+#[derive(Component, Clone)]
+pub struct Planet;
+
+#[derive(Component, Clone, Copy, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "debug", derive(Reflect, Debug))]
+pub enum PlanetType {
+    GasGiant,
+    IceGiant,
+    Rocky,
 }
 
 #[derive(Component, Clone)]

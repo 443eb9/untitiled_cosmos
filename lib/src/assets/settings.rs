@@ -1,85 +1,33 @@
-use bevy::{ecs::system::Resource, render::color::Color, utils::HashMap};
-use serde::{de::Visitor, Deserialize};
+use bevy::{ecs::system::Resource, utils::HashMap};
+use serde::Deserialize;
 
 use crate::{
     consts,
-    math::{Unit, UnitClass},
+    math::{self, HexRgbaColor, Unit, UnitClass},
     sim::components::StarClass,
     utils,
 };
 
+#[derive(Deserialize)]
 pub struct PackedStarInfo {
     pub class: StarClass,
     pub mass: f64,
     pub radius: f64,
     pub luminosity: f64,
-    pub temperature: f64,
-    pub color: Color,
+    pub effective_temp: f64,
+    pub color: HexRgbaColor,
 }
 
-impl<'de> Deserialize<'de> for PackedStarInfo {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        struct PackedStarInfoVisitor;
-        impl<'de> Visitor<'de> for PackedStarInfoVisitor {
-            type Value = PackedStarInfo;
-
-            fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-                formatter.write_str("a map with mass, radius, luminosity, temperature, and color")
-            }
-
-            fn visit_map<A>(self, mut map: A) -> Result<Self::Value, A::Error>
-            where
-                A: serde::de::MapAccess<'de>,
-            {
-                #[derive(Deserialize)]
-                struct VecColor {
-                    r: f32,
-                    g: f32,
-                    b: f32,
-                    a: f32,
-                }
-                impl Into<Color> for VecColor {
-                    fn into(self) -> Color {
-                        Color::rgba(self.r, self.g, self.b, self.a)
-                    }
-                }
-                let mut star_class = None;
-                let mut mass = None;
-                let mut radius = None;
-                let mut luminosity = None;
-                let mut temperature = None;
-                let mut color = None;
-
-                while let Some(key) = map.next_key()? {
-                    match key {
-                        "star_class" => star_class = Some(map.next_value()?),
-                        "mass" => mass = Some(map.next_value()?),
-                        "radius" => radius = Some(map.next_value()?),
-                        "luminosity" => luminosity = Some(map.next_value()?),
-                        "temperature" => temperature = Some(map.next_value()?),
-                        "color" => color = Some(map.next_value::<VecColor>()?.into()),
-                        _ => {}
-                    }
-                }
-
-                Ok(PackedStarInfo {
-                    class: star_class
-                        .ok_or_else(|| serde::de::Error::missing_field("star_class"))?,
-                    mass: mass.ok_or_else(|| serde::de::Error::missing_field("mass"))?,
-                    radius: radius.ok_or_else(|| serde::de::Error::missing_field("radius"))?,
-                    luminosity: luminosity
-                        .ok_or_else(|| serde::de::Error::missing_field("luminosity"))?,
-                    temperature: temperature
-                        .ok_or_else(|| serde::de::Error::missing_field("temperature"))?,
-                    color: color.ok_or_else(|| serde::de::Error::missing_field("color"))?,
-                })
-            }
+impl PackedStarInfo {
+    pub fn lerp(&self, other: &Self, t: f64) -> PackedStarInfo {
+        PackedStarInfo {
+            class: self.class,
+            mass: math::lerpf64(self.mass, other.mass, t),
+            radius: math::lerpf64(self.radius, other.radius, t),
+            luminosity: math::lerpf64(self.luminosity, other.luminosity, t),
+            effective_temp: math::lerpf64(self.effective_temp, other.effective_temp, t),
+            color: self.color.lerp(other.color, t as f32),
         }
-
-        deserializer.deserialize_map(PackedStarInfoVisitor)
     }
 }
 
@@ -123,6 +71,32 @@ impl StarProperties {
     #[inline]
     pub fn raw(&self) -> &Vec<PackedStarInfo> {
         &self.0
+    }
+}
+
+#[derive(Resource)]
+pub struct ConstellationNames(Vec<String>);
+
+impl Default for ConstellationNames {
+    fn default() -> Self {
+        Self(utils::deser(consts::STAR_NAMES).unwrap())
+    }
+}
+
+impl ConstellationNames {
+    #[inline]
+    pub fn get(&self, index: usize) -> &str {
+        &self.0[index]
+    }
+
+    #[inline]
+    pub fn get_cloned(&self, index: usize) -> String {
+        self.0[index].clone()
+    }
+
+    #[inline]
+    pub fn len(&self) -> usize {
+        self.0.len()
     }
 }
 

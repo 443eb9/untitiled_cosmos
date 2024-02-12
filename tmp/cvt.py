@@ -73,11 +73,7 @@ for i in data:
     d.append([j.strip() for j in i])
 json = ""
 for line in d:
-    color = line[7].strip('#')
-    r = int(color[0:2], 16)
-    g = int(color[2:4], 16)
-    b = int(color[4:6], 16)
-    e = """{"star_class": { "ty": \""""+line[0]+"""\", "sub_ty":"""+line[1]+""" },"mass": """ + line[2] + ""","radius": """ + line[3] + ""","luminosity": """ + line[4] + ""","temperature": """ + line[5] + ""","color": {"r": """ + str(r/255) + ""","g": """ + str(g/255) + ""","b": """ + str(b/255) + ""","a": 1}},"""
-    json += e
+    e = """{"star_class": { "ty": \""""+line[0]+"""\", "sub_ty":"""+line[1]+""" },"mass": """ + line[2] + ""","radius": """ + line[3] + ""","luminosity": """ + line[4] + ""","temperature": """ + line[5] + ""","color": \""""+line[7]+"""\"},"""
+    json += e + "\n"
     
 print(json)

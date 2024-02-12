@@ -16,6 +16,7 @@ impl Display for PlanetGenerationError {
 
 pub enum MoonGenerationError {
     MinAccNotMet,
+    MaxDistToPlanetExceeded,
 }
 
 impl Display for MoonGenerationError {
@@ -23,6 +24,9 @@ impl Display for MoonGenerationError {
         match self {
             MoonGenerationError::MinAccNotMet => {
                 write!(f, "Minimum acceleration not met")
+            }
+            MoonGenerationError::MaxDistToPlanetExceeded => {
+                write!(f, "Maximum distance to planet exceeded")
             }
         }
     }

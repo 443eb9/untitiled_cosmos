@@ -1,0 +1,230 @@
+[
+    {
+        "name": "Hydrogen",
+        "melting_point": 13.99,
+        "boiling_point": 20.27,
+        "heat_of_vaporization": 904,
+        "vapor": "Hydrogen",
+        "color": [
+            "#ffffffff",
+            "#ffffff00",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "Helium",
+        "melting_point": 0.95,
+        "boiling_point": 4.22,
+        "heat_of_vaporization": 83,
+        "vapor": "Helium",
+        "color": [
+            "#ffffffff",
+            "#ffffff00",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "Oxygen",
+        "melting_point": 54.36,
+        "boiling_point": 90.19,
+        "heat_of_vaporization": 6820,
+        "vapor": "Oxygen",
+        "color": [
+            "#84cefeff",
+            "#84cefe80",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "Ammonia",
+        "melting_point": 195.42,
+        "boiling_point": 239.81,
+        "heat_of_vaporization": 22730,
+        "vapor": "Ammonia",
+        "color": [
+            "#ffffffff",
+            "#ffffff00",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "Methane",
+        "melting_point": 90.69,
+        "boiling_point": 111.6,
+        "heat_of_vaporization": 8190,
+        "vapor": "Methane",
+        "color": [
+            "#ffffffff",
+            "#ffffff00",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "CarbonDioxide",
+        "melting_point": 194.69,
+        "boiling_point": 194.69,
+        "heat_of_vaporization": 0,
+        "vapor": "CarbonDioxide",
+        "color": [
+            "#ffffffff",
+            "#ffffff00",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "Nitrogen",
+        "melting_point": 63.23,
+        "boiling_point": 77.36,
+        "heat_of_vaporization": 5570,
+        "vapor": "Nitrogen",
+        "color": [
+            "#ffffffff",
+            "#ffffff00",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "SulfurDioxide",
+        "melting_point": 201.0,
+        "boiling_point": 263.0,
+        "heat_of_vaporization": 24950,
+        "vapor": "SulfurDioxide",
+        "color": [
+            "#ffffffff",
+            "#ffffff00",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "SulfuricAcid",
+        "melting_point": 10.31,
+        "boiling_point": 337,
+        "heat_of_vaporization": 55910,
+        "vapor": "SulfuricAcid",
+        "color": [
+            "#ffffb3ff",
+            "#ffffb380",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "Phosphine",
+        "melting_point": 140.3,
+        "boiling_point": 185.5,
+        "heat_of_vaporization": 14604,
+        "vapor": "Phosphine",
+        "color": [
+            "#ffffffff",
+            "#ffffff00",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "Silane",
+        "melting_point": 88.1,
+        "boiling_point": 161.2,
+        "heat_of_vaporization": 12454,
+        "vapor": "Silane",
+        "color": [
+            "#ffffffff",
+            "#ffffff00",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "HydrogenSulfide",
+        "melting_point": 187.7,
+        "boiling_point": 213.6,
+        "heat_of_vaporization": 603,
+        "vapor": "HydrogenSulfide",
+        "color": [
+            "#ffffffff",
+            "#ffffff00",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "AmorphousIce",
+        "melting_point": 270,
+        "boiling_point": -1.0,
+        "heat_of_vaporization": 40650,
+        "vapor": "Water",
+        "color": [
+            "#ffffffff",
+            "#C4D8E280",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "Water",
+        "melting_point": 273.15,
+        "boiling_point": 373.13,
+        "heat_of_vaporization": 40650,
+        "vapor": "Water",
+        "color": [
+            "#ffffffff",
+            "#C4D8E280",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "SiliconDioxide",
+        "melting_point": 1986,
+        "boiling_point": 3220,
+        "heat_of_vaporization": 697800,
+        "vapor": "SiliconDioxide",
+        "color": [
+            "#ffffffff",
+            "#ffffff00",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "FerricOxide",
+        "melting_point": 1812,
+        "boiling_point": -1.0,
+        "heat_of_vaporization": -1.0,
+        "vapor": null,
+        "color": [
+            "#49231cff",
+            "#00000000",
+            "#00000000"
+        ]
+    },
+    {
+        "name": "AluminumOxide",
+        "melting_point": 2345,
+        "boiling_point": 3250,
+        "heat_of_vaporization": 1975984,
+        "vapor": "AluminumOxide",
+        "color": [
+            "#ffffffff",
+            "#ffffffff",
+            "#ffffff00"
+        ]
+    },
+    {
+        "name": "CalciumCarbonate",
+        "melting_point": 1612,
+        "boiling_point": -1.0,
+        "heat_of_vaporization": -1.0,
+        "vapor": "CarbonDioxide",
+        "color": [
+            "#ffffffff",
+            "#00000000",
+            "#00000000"
+        ]
+    },
+    {
+        "name": "Coal",
+        "melting_point": -1.0,
+        "boiling_point": -1.0,
+        "heat_of_vaporization": -1.0,
+        "vapor": null,
+        "color": [
+            "#000000ff",
+            "#00000000",
+            "#00000000"
+        ]
+    }
+]

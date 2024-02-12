@@ -1,5 +1,5 @@
 use bevy::{
-    app::{App, Plugin, Startup, Update},
+    app::{App, Plugin, PostStartup, Startup, Update},
     diagnostic::{DiagnosticsStore, FrameTimeDiagnosticsPlugin},
     ecs::{
         component::Component,
@@ -39,12 +39,9 @@ impl Plugin for CosmosDebugPlugin {
 
         if self.auto_generate {
             app.add_systems(Startup, celestial::generate_galaxy);
+            // app.add_systems(PostStartup, celestial::body_removal_test);
         } else {
             app.init_resource::<Galaxy>();
-        }
-
-        if self.body_spawner {
-            app.add_systems(Update, celestial::spawn_body);
         }
 
         app.init_resource::<BodyGenerator>();

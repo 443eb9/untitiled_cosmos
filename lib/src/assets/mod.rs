@@ -13,17 +13,18 @@ use bevy::{
     text::Font,
     utils::HashMap,
 };
-use rand::Rng;
 use serde::{Deserialize, Serialize};
 
 use crate::{
     consts,
     input::{camera::CameraController, KeyMapping},
-    sim::components::CelestialBodyId,
+    math::HexRgbaColor,
+    sci::chemistry::{Substance, SubstanceProperty},
+    sim::components::{CelestialBodyId, PlanetType},
     utils,
 };
 
-use self::settings::{StarProperties, UnitsInfo};
+use self::settings::{ConstellationNames, StarProperties, UnitsInfo};
 
 pub mod settings;
 
@@ -32,11 +33,14 @@ pub struct CosmosAssetsPlugin;
 impl Plugin for CosmosAssetsPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<GlobalConfig>()
+            .init_resource::<ConstellationNames>()
             .init_resource::<StarProperties>()
+            .init_resource::<SubstanceAssets>()
             .init_resource::<UnitsInfo>()
             .init_resource::<MeshAssets>()
             .init_resource::<MaterialAssets>()
-            .init_resource::<FontAssets>();
+            .init_resource::<FontAssets>()
+            .init_resource::<BodyStylishAssets>();
     }
 }
 
@@ -140,20 +144,14 @@ impl MaterialAssets {
         &mut self,
         assets: &mut Assets<ColorMaterial>,
         id: CelestialBodyId,
-        rng: &mut impl Rng,
-    ) -> (Handle<ColorMaterial>, Color) {
-        let color = Color::Rgba {
-            red: rng.gen_range(0f32..1.),
-            green: rng.gen_range(0f32..1.),
-            blue: rng.gen_range(0f32..1.),
-            alpha: 1.,
-        };
+        color: Color,
+    ) -> Handle<ColorMaterial> {
         let handle = assets.add(ColorMaterial {
             color,
             ..Default::default()
         });
         self.insert(id, handle.clone());
-        (handle, color)
+        handle
     }
 }
 
@@ -167,5 +165,84 @@ pub struct GlobalConfig {
 impl Default for GlobalConfig {
     fn default() -> Self {
         utils::deser(consts::GLOBAL_CONFIG).unwrap()
+    }
+}
+
+#[derive(Resource)]
+pub struct SubstanceAssets {
+    assets: Vec<SubstanceProperty>,
+}
+
+impl Default for SubstanceAssets {
+    fn default() -> Self {
+        Self {
+            assets: utils::deser(consts::SUBSTANCE_ASSETS).unwrap(),
+        }
+    }
+}
+
+impl SubstanceAssets {
+    #[inline]
+    pub fn get(&self, substance: Substance) -> &SubstanceProperty {
+        &self.assets[substance as usize]
+    }
+
+    #[inline]
+    pub fn assets(&self) -> &[SubstanceProperty] {
+        &self.assets
+    }
+
+    #[inline]
+    pub fn to_vec(self) -> Vec<SubstanceProperty> {
+        self.assets
+    }
+
+    #[inline]
+    pub fn generate_props_on(&self, atmo_density: f64) -> Self {
+        Self {
+            assets: self
+                .assets
+                .clone()
+                .into_iter()
+                .map(|prop| SubstanceProperty {
+                    boiling_point: prop.get_boiling_point_at(atmo_density),
+                    ..prop
+                })
+                .collect(),
+        }
+    }
+
+    #[inline]
+    pub fn generate_in_vaccum(&self) -> Self {
+        Self {
+            assets: self
+                .assets
+                .clone()
+                .into_iter()
+                .map(|prop| SubstanceProperty {
+                    boiling_point: prop.melting_point,
+                    ..prop
+                })
+                .collect(),
+        }
+    }
+}
+
+#[derive(Resource)]
+pub struct BodyStylishAssets {
+    assets: Vec<Vec<HexRgbaColor>>,
+}
+
+impl Default for BodyStylishAssets {
+    fn default() -> Self {
+        Self {
+            assets: utils::deser(consts::BODY_STYLISH).unwrap(),
+        }
+    }
+}
+
+impl BodyStylishAssets {
+    pub fn get(&self, ty: PlanetType) -> &Vec<HexRgbaColor> {
+        &self.assets[ty as usize]
     }
 }

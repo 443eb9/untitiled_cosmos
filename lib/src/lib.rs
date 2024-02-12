@@ -9,6 +9,7 @@ pub mod floating_origin;
 pub mod gen;
 pub mod input;
 pub mod math;
+pub mod sci;
 pub mod sim;
 pub mod utils;
 

@@ -1,13 +1,13 @@
 use std::collections::VecDeque;
 
-use bevy::{ecs::system::Resource, math::DVec2, render::color::Color};
+use bevy::{ecs::system::Resource, math::DVec2, render::color::Color, utils::HashSet};
 use rayon::iter::{
     IndexedParallelIterator, IntoParallelRefIterator, IntoParallelRefMutIterator, ParallelIterator,
 };
 
 use crate::consts;
 
-use super::components::{CelestialBodyId, CelestialBodySystemId};
+use super::components::CelestialBodyId;
 
 #[cfg(feature = "debug")]
 use bevy::{ecs::reflect::ReflectResource, reflect::Reflect};
@@ -101,86 +101,74 @@ impl Orbit {
     }
 }
 
-#[derive(Clone)]
-#[cfg_attr(feature = "debug", derive(Reflect))]
-pub struct StarSystem {
-    pub id: usize,
-    pub bodies: Vec<CelestialBodyId>,
-}
-
-impl StarSystem {
-    pub fn new(id: usize) -> Self {
-        StarSystem {
-            id,
-            bodies: Vec::new(),
-        }
-    }
-
-    #[inline]
-    pub fn body_count(&self) -> usize {
-        self.bodies.len()
-    }
-
-    pub fn add_body(&mut self, body: CelestialBodyId) -> CelestialBodySystemId {
-        let in_system_id = self.bodies.len();
-        self.bodies.push(body);
-        CelestialBodySystemId {
-            in_system_id,
-            system_id: self.id,
-        }
-    }
-}
-
 #[derive(Resource)]
 #[cfg_attr(feature = "debug", derive(Reflect))]
 #[cfg_attr(feature = "debug", reflect(Resource))]
 pub struct Galaxy {
     time_step: f64,
-    star_systems: Vec<StarSystem>,
     bodies: Vec<CelestialBody>,
     body_colors: Vec<Color>,
+    body_id_to_index: Vec<Option<usize>>,
+    body_index_to_id: Vec<Option<CelestialBodyId>>,
 }
 
 impl Default for Galaxy {
     fn default() -> Self {
         Self {
-            time_step: consts::FIXED_STEP,
-            star_systems: Default::default(),
+            time_step: consts::CELESTIAL_SIM_STEP,
             bodies: Default::default(),
             body_colors: Default::default(),
+            body_id_to_index: Default::default(),
+            body_index_to_id: Default::default(),
         }
+    }
+}
+
+impl<'a> IntoParallelRefIterator<'a> for Galaxy {
+    type Item = &'a CelestialBody;
+    type Iter = rayon::slice::Iter<'a, CelestialBody>;
+
+    fn par_iter(&'a self) -> Self::Iter {
+        self.bodies.par_iter()
     }
 }
 
 impl Galaxy {
     #[inline]
-    pub fn body_count(&self) -> usize {
+    pub fn num_bodies(&self) -> usize {
         self.bodies.len()
     }
 
-    #[inline]
-    pub fn system_count(&self) -> usize {
-        self.star_systems.len()
-    }
-
-    pub fn add_body(
-        &mut self,
-        system_id: usize,
-        body: CelestialBody,
-    ) -> (CelestialBodyId, CelestialBodySystemId) {
-        if system_id >= self.star_systems.len() {
-            (0..system_id - self.star_systems.len() + 1).for_each(|_| self.create_system());
-        }
-
-        let id = CelestialBodyId(self.body_count());
-        let sys_id = self.star_systems[system_id].add_body(id);
+    pub fn add_body(&mut self, body: CelestialBody) -> CelestialBodyId {
+        let id = CelestialBodyId(self.num_bodies());
+        self.body_id_to_index.push(Some(self.bodies.len()));
+        self.body_index_to_id.push(Some(id));
         self.bodies.push(body);
-        (id, sys_id)
+        id
     }
 
-    pub fn create_system(&mut self) {
-        self.star_systems
-            .push(StarSystem::new(self.star_systems.len()));
+    pub fn remove_body(&mut self, id: CelestialBodyId) {
+        if let Some(index) = self.body_id_to_index[id.0] {
+            for i in index + 1..self.body_id_to_index.len() {
+                if let Some(idx) = &mut self.body_id_to_index[i] {
+                    *idx -= 1;
+                }
+            }
+
+            for i in index..self.body_index_to_id.len() - 1 {
+                if let Some(id) = &mut self.body_index_to_id[i] {
+                    *id = CelestialBodyId(id.0 + 1);
+                }
+            }
+            self.body_index_to_id.pop();
+            self.body_id_to_index[id.0] = None;
+            self.bodies.remove(index);
+        }
+    }
+
+    #[inline]
+    pub fn bodies(&self) -> &[CelestialBody] {
+        &self.bodies
     }
 
     #[inline]
@@ -193,23 +181,50 @@ impl Galaxy {
 
     #[inline]
     pub fn get_body(&self, id: CelestialBodyId) -> Option<&CelestialBody> {
-        self.bodies.get(id.0)
-    }
-
-    #[inline]
-    pub fn get_system(&self, id: usize) -> Option<&StarSystem> {
-        self.star_systems.get(id)
-    }
-
-    #[inline]
-    pub fn systems(&self) -> &[StarSystem] {
-        &self.star_systems
+        self.body_id_to_index
+            .get(id.0)
+            .map(|&i| i.map(|i| &self.bodies[i]))
+            .flatten()
     }
 
     #[inline]
     pub fn step(&mut self) {
         calc_acc(&mut self.bodies);
         update_pos(&mut self.bodies, self.time_step);
+    }
+
+    #[inline]
+    pub fn test_overlapping(&self) -> HashSet<CelestialBodyId> {
+        let mut overlapping = HashSet::default();
+        self.bodies
+            .iter()
+            .enumerate()
+            .for_each(|(i_lhs, body_lhs)| {
+                self.bodies
+                    .iter()
+                    .enumerate()
+                    .for_each(|(i_rhs, body_rhs)| {
+                        if i_lhs == i_rhs {
+                            return;
+                        }
+
+                        if (body_lhs.pos - body_rhs.pos).length_squared()
+                            > (body_lhs.radius + body_rhs.radius).powi(2)
+                        {
+                            return;
+                        }
+
+                        let remove = {
+                            if body_lhs.mass > body_rhs.mass {
+                                i_rhs
+                            } else {
+                                i_lhs
+                            }
+                        };
+                        overlapping.insert(self.body_index_to_id[remove].unwrap());
+                    });
+            });
+        overlapping
     }
 }
 
@@ -244,7 +259,7 @@ impl OrbitPredictor {
     pub fn update_state(&mut self, iterations: usize, galaxy: &Galaxy) {
         self.iterations = iterations;
         self.parallel_universe = galaxy.bodies.clone();
-        self.time_step = consts::FIXED_STEP;
+        self.time_step = consts::CELESTIAL_SIM_STEP;
         self.orbits = galaxy
             .body_colors
             .iter()
